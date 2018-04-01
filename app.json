@@ -1,0 +1,8 @@
+{
+  "expo": {
+    "name": "Twitter Clone",
+    "slug": "twitter-clone",
+    "sdkVersion": "25.0.0",
+    "privacy": "public"
+  }
+}
