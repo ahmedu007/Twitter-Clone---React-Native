@@ -22,6 +22,7 @@ const localStyles = StyleSheet.create({
     borderBottomColor: "grey",
     borderBottomWidth: 1,
     paddingBottom: 10
+    // paddingLeft: 20
   },
 
   horizontalContainer: {
@@ -57,10 +58,19 @@ const Tweet = props => {
     <View style={localStyles.container}>
       <View style={localStyles.horizontalContainer}>
         <Image style={localStyles.avatar} source={{ uri: props.img }} />
-        <Text style={localStyles.tweets}>
-          {props.name} @{props.handle}
-        </Text>
-        <Text style={localStyles.tweets}>{props.text}</Text>
+        <View
+          style={{
+            flexDirection: "column",
+            flex: 1,
+            justifyContent: "space-around",
+            marginLeft: 5
+          }}
+        >
+          <Text style={localStyles.tweets}>
+            {props.name} @{props.handle}
+          </Text>
+          <Text style={localStyles.tweets}>{props.text}</Text>
+        </View>
       </View>
       <View style={localStyles.icons}>
         <Icon name="comment" size={25} color="#900" />
