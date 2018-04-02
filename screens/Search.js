@@ -9,7 +9,7 @@ class Search extends Component {
   render() {
     return (
       <View>
-        <Text>Hello World</Text>
+        <Text>Hello Search Screen</Text>
       </View>
     );
   }

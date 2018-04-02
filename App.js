@@ -1,66 +1,70 @@
-import React from "react";
-import {
-  StyleSheet,
-  ScrollView,
-  Text,
-  FlatList,
-  View,
-  Image
-} from "react-native";
-import auth from "./twitterConfig";
-import Axios from "axios";
-import Tweet from "./components/Tweet";
+import React, { Component } from "react";
+import { View, Text, Dimensions, StyleSheet } from "react-native";
+import Ionicons from "react-native-vector-icons/Ionicons";
+import { StackNavigator } from "react-navigation";
+import { Constants } from "expo";
+import Home from "./screens/Home";
+import Search from "./screens/Search";
+import Notifications from "./screens/Notifications";
+import Messages from "./screens/Messages";
 
-export default class App extends React.Component {
-  state = {
-    tweets: []
-  };
-
-  componentDidMount() {
-    this.getTweets();
-  }
-
-  getTweets() {
-    return Axios.get(
-      // "https://northcoders-sprints-api.now.sh/api/twitter/timeline"
-      "https://northcoders-sprints-api.now.sh/api/twitter/tweets/CuriousMau"
-    )
-      .then((res, index) => {
-        return this.setState({
-          tweets: res.data.tweets
-        });
-      })
-      .catch(error => {
-        console.error(error);
-      });
-  }
-
-  render() {
-    return (
-      <ScrollView>
-        <View style={styles.container}>
-          <FlatList
-            data={this.state.tweets}
-            renderItem={({ item }) => (
-              <Tweet
-                img={item.user.profile_image_url_https}
-                text={item.text}
-                name={item.user.name}
-                handle={item.user.screen_name}
-              />
-            )}
-            keyExtractor={(item, index) => item._id}
-          />
-        </View>
-      </ScrollView>
-    );
-  }
-}
+const Navigator = StackNavigator({
+  Home: { screen: Home },
+  Search: { screen: Search },
+  Notifications: { screen: Notifications },
+  Messages: { screen: Messages }
+});
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 50,
-    backgroundColor: "#fff"
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#ecf0f1",
+    paddingTop: Constants.statusBarHeight
   }
 });
+
+export default class App extends Component {
+  render() {
+    return (
+      <Navigator style={{ width: Dimensions.get("window").width }} />
+      // <View style={styles.container}>
+      // </View>
+    );
+  }
+}
+
+// export default TabNavigator(
+//   {
+//     Home: { screen: App },
+//     Search: { screen: Search },
+//     Notifications: { screen: Notifications },
+//     Messages: { screen: Messages }
+//   },
+//     {
+//       navigationOptions: ({ navigation }) => ({
+//         tabBarIcon: ({ focused, tintColor }) => {
+//           const { routeName } = navigation.state;
+//           let iconName;
+//           if (routeName === "Home") {
+//             iconName = `ios-information-circle${focused ? "" : "-outline"}`;
+//           } else if (routeName === "Settings") {
+//             iconName = `ios-options${focused ? "" : "-outline"}`;
+//           }
+
+//           // You can return any component that you like here! We usually use an
+//           // icon component from react-native-vector-icons
+//           return <Ionicons name={iconName} size={25} color={tintColor} />;
+//         }
+//       }),
+//       tabBarOptions: {
+//         activeTintColor: "tomato",
+//         inactiveTintColor: "gray"
+//       },
+//       tabBarComponent: TabBarBottom,
+//       tabBarPosition: "bottom",
+//       animationEnabled: false,
+//       swipeEnabled: false
+//     }
+// );

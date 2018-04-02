@@ -7,12 +7,17 @@ import {
   View,
   Image
 } from "react-native";
+import { TabNavigator, TabBarBottom } from "react-navigation";
 
 import auth from "../twitterConfig";
 import Axios from "axios";
 import Tweet from "../components/Tweet";
 
-export default class App extends React.Component {
+import Search from "./Search";
+import Notifications from "./Notifications";
+import Messages from "./Messages";
+
+class Home extends React.Component {
   state = {
     tweets: []
   };
@@ -65,3 +70,12 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff"
   }
 });
+
+const HomeTabNavigator = TabNavigator({
+  Home: { screen: Home },
+  Search: { screen: Search },
+  Notifications: { screen: Notifications },
+  Messages: { screen: Messages }
+});
+
+export default HomeTabNavigator;

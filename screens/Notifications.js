@@ -9,7 +9,7 @@ class Notifications extends Component {
   render() {
     return (
       <View>
-        <Text>Hello World</Text>
+        <Text>Hello Notifications Screen</Text>
       </View>
     );
   }

@@ -9,7 +9,7 @@ class Messages extends Component {
   render() {
     return (
       <View>
-        <Text>Hello World</Text>
+        <Text>Hello Messages Screen</Text>
       </View>
     );
   }
