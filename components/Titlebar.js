@@ -19,7 +19,8 @@ const TitleBarStyles = StyleSheet.create({
     paddingTop: Constants.statusBarHeight,
     height: 80,
     justifyContent: "flex-start",
-    backgroundColor: "#00aced"
+    backgroundColor: "#00aced",
+    elevation: 4
   },
   img: {
     width: 40,
@@ -28,8 +29,9 @@ const TitleBarStyles = StyleSheet.create({
   },
   text: {
     paddingLeft: 10,
-    fontSize: 17,
-    fontWeight: "bold"
+    fontSize: 20,
+    fontWeight: "bold",
+    color: "white"
   }
 });
 
